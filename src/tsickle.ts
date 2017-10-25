@@ -79,7 +79,7 @@ export let closureExternsBlacklist: string[] = [
   'WorkerGlobalScope',
 ];
 
-export function formatDiagnostics(diags: ts.Diagnostic[]): string {
+export function formatDiagnostics(diags: ReadonlyArray<ts.Diagnostic>): string {
   return diags
       .map((d) => {
         let res = ts.DiagnosticCategory[d.category];
@@ -1976,7 +1976,7 @@ export function emitWithTsickle(
   const modulesManifest = new ModulesManifest();
   const writeFileImpl =
       (fileName: string, content: string, writeByteOrderMark: boolean,
-       onError?: (message: string) => void, sourceFiles?: ts.SourceFile[]) => {
+       onError?: (message: string) => void, sourceFiles?: ReadonlyArray<ts.SourceFile>) => {
         if (path.extname(fileName) !== '.map') {
           if (tsOptions.inlineSourceMap) {
             content = combineInlineSourceMaps(program, fileName, content);
@@ -2031,7 +2031,7 @@ export function emitWithTsickle(
 }
 
 function addClutzAliases(
-    fileName: string, dtsFileContent: string, sourceFiles: ts.SourceFile[],
+    fileName: string, dtsFileContent: string, sourceFiles: ReadonlyArray<ts.SourceFile>,
     typeChecker: ts.TypeChecker, host: TsickleHost): string {
   const reexports: string[] = [];
   for (const sf of sourceFiles) {
