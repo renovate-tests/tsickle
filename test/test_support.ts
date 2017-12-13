@@ -221,28 +221,33 @@ export function readSources(filePaths: string[]): Map<string, string> {
 }
 
 function getLineAndColumn(source: string, token: string): {line: number, column: number} {
-  const lines = source.split('\n');
-  const line = lines.findIndex(l => l.indexOf(token) !== -1) + 1;
-  if (line === 0) {
-    throw new Error(`Couldn't find token '${token}' in source`);
+  const idx = source.indexOf(token);
+  if (idx === -1) {
+    throw new Error(`Couldn't find token '${token}' in source ${source}`);
   }
-  const column = lines[line - 1].indexOf(token);
+  let line = 1, column = 0;
+  for (let i = 0; i < idx; i++) {
+    column++;
+    if (source[i] === '\n') {
+      line++;
+      column = 0;
+    }
+  }
   return {line, column};
 }
 
 export function assertSourceMapping(
     compiledJs: string, sourceMap: SourceMapConsumer, sourceSnippet: string,
-    expectedPosition: {line?: number, column?: number, source?: string}) {
+    expectedPosition: {source: string, line?: number, column?: number}) {
   const {line, column} = getLineAndColumn(compiledJs, sourceSnippet);
+  console.error('line and column are', line, column, 'in', compiledJs);
   const originalPosition = sourceMap.originalPositionFor({line, column});
-  if (expectedPosition.line) {
+  expect(originalPosition.source).to.equal(expectedPosition.source);
+  if (expectedPosition.line !== undefined) {
     expect(originalPosition.line).to.equal(expectedPosition.line);
   }
-  if (expectedPosition.column) {
+  if (expectedPosition.column !== undefined) {
     expect(originalPosition.column).to.equal(expectedPosition.column);
-  }
-  if (expectedPosition.source) {
-    expect(originalPosition.source).to.equal(expectedPosition.source);
   }
 }
 
