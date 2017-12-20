@@ -1382,8 +1382,6 @@ class Annotator extends ClosureRewriter {
   }
 
   private visitTypeAlias(node: ts.TypeAliasDeclaration) {
-    if (this.host.untyped) return;
-
     // If the type is also defined as a value, skip emitting it. Closure collapses type & value
     // namespaces, the two emits would conflict if tsickle emitted both.
     const sym = this.mustGetSymbolAtLocation(node.name);
@@ -1397,7 +1395,8 @@ class Annotator extends ClosureRewriter {
     this.newTypeTranslator(node).blacklistTypeParameters(
         this.symbolsToAliasedNames, node.typeParameters);
 
-    const typeStr = this.typeToClosure(node, undefined, true /* resolveAlias */);
+    const typeStr =
+        this.host.untyped ? '?' : this.typeToClosure(node, undefined, true /* resolveAlias */);
     this.emit(`\n/** @typedef {${typeStr}} */\n`);
     if (hasModifierFlag(node, ts.ModifierFlags.Export)) {
       this.emit('exports.');
