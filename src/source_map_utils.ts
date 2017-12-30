@@ -102,6 +102,7 @@ export function sourceMapTextToConsumer(sourceMapText: string): BasicSourceMapCo
   // IndexedSourceMapConsumer depending on if you pass in a RawSourceMap or a
   // RawIndexMap or the string json of either.  In this case we're passing in
   // the string for a RawSourceMap, so we always get a BasicSourceMapConsumer
+  console.error('source map test is', sourceMapText);
   return new SourceMapConsumer(sourceMapText) as BasicSourceMapConsumer;
 }
 
