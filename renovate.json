@@ -5,10 +5,12 @@
   ],
   "packageRules": [
     {
-      "extends": ["group:all"],
-      "excludePackagePatterns": ["google-closure-compiler"],
-      "groupName": "deps",
-      "schedule": ["on the first day of the month"]
+      "packagePatterns": ["*"],
+      "excludePackageNames": ["google-closure-compiler"],
+      "extends": [
+        "group:all",
+        "schedule:monthly"
+      ]
     }
   ],
   "ignorePaths": ["test*/**"]
