@@ -5,7 +5,6 @@
   ],
   "packageRules": [
     {
-      "packagePatterns": ["*"],
       "excludePackageNames": ["google-closure-compiler"],
       "extends": [
         "group:all",
