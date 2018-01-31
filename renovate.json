@@ -4,6 +4,9 @@
     "config:base",
     ":semanticCommitsDisabled"
   ],
+  "major": {
+    "enabled": false
+  },
   "packageRules": [
     {
       "excludePackageNames": ["google-closure-compiler"],
