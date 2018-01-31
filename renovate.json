@@ -1,19 +1,28 @@
-
 {
   "extends": [
     "config:base",
     ":semanticCommitsDisabled"
   ],
-  "major": {
-    "enabled": false
-  },
   "packageRules": [
     {
-      "excludePackageNames": ["google-closure-compiler"],
+      "packageNames": [
+        "@types\/node"
+      ],
+      "major": {
+        "enabled": false
+      }
+    },
+    {
+      "excludePackageNames": [
+        "google-closure-compiler"
+      ],
       "extends": [
         "group:all"
       ]
     }
   ],
-  "ignorePaths": ["test*/**"]
+  "ignorePaths": [
+    "test*\/**"
+  ]
 }
+
