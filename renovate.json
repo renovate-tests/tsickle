@@ -8,8 +8,7 @@
     {
       "excludePackageNames": ["google-closure-compiler"],
       "extends": [
-        "group:all",
-        "schedule:monthly"
+        "group:all"
       ]
     }
   ],
