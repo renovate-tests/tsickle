@@ -3,15 +3,8 @@
     "config:base",
     ":semanticCommitsDisabled"
   ],
+  "renovateFork": true,
   "packageRules": [
-    {
-      "packageNames": [
-        "@types/node"
-      ],
-      "major": {
-        "enabled": false
-      }
-    },
     {
       "excludePackageNames": [
         "google-closure-compiler"
