@@ -14,29 +14,29 @@
   "dependencies": {
     "minimist": "^1.2.0",
     "mkdirp": "^0.5.1",
-    "source-map": "^0.5.6",
+    "source-map": "^0.7.0",
     "source-map-support": "^0.5.0"
   },
   "peerDependencies": {
-    "typescript": ">=2.4.2 <2.7"
+    "typescript": ">=2.4.2 <2.8"
   },
   "devDependencies": {
     "@types/chai": "4.1.2",
     "@types/diff": "3.2.2",
-    "@types/glob": "5.0.34",
+    "@types/glob": "5.0.35",
     "@types/google-closure-compiler": "0.0.18",
     "@types/jasmine": "2.8.6",
     "@types/minimatch": "3.0.3",
     "@types/minimist": "1.2.0",
     "@types/mkdirp": "0.5.2",
     "@types/node": "6.0.96",
-    "@types/source-map": "0.5.1",
+    "@types/source-map": "0.5.7",
     "@types/source-map-support": "0.4.0",
     "chai": "4.1.2",
     "chai-diff": "1.0.1",
     "clang-format": "1.2.2",
     "diff": "3.4.0",
-    "glob": "7.1.1",
+    "glob": "7.1.2",
     "google-closure-compiler": "20161024.3.0",
     "gulp": "3.9.1",
     "gulp-clang-format": "1.0.25",
@@ -46,7 +46,7 @@
     "merge2": "1.2.1",
     "temp": "0.8.3",
     "tslint": "5.9.1",
-    "typescript": "2.6.2"
+    "typescript": "2.7.1"
   },
   "scripts": {
     "build": "bazel build //src/... && mkdir built && cp -R bazel-bin/src built/src && cp package.json README.md built",
